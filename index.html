@@ -1,83 +1,121 @@
 <!doctype html>
 <html lang="he" dir="rtl">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#10131d"><meta name="description" content="נגן ומנהל מוזיקה למקורות פתוחים ולהורדות שמותרות לפי הרישיון">
-<link rel="manifest" href="./manifest.webmanifest"><link rel="icon" href="./icon.svg" type="image/svg+xml">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0b1020">
+<meta name="description" content="חיפוש מוזיקה, ספריית הורדות ולהיטים ישראליים">
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="icon" href="./icon.svg" type="image/svg+xml">
 <title>Global Songs</title>
 <style>
-:root{color-scheme:dark;--bg:#090d17;--panel:#141c2b;--line:#29364c;--muted:#9eacc4;--accent:#8c7bff;--good:#55d6a2}*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 50% -15%,#26365b 0,transparent 48%),var(--bg);color:#f7f8ff;font-family:system-ui,-apple-system,sans-serif;padding:env(safe-area-inset-top) 16px env(safe-area-inset-bottom);max-width:850px;margin:auto}header{padding:26px 4px 16px}h1{font-size:clamp(26px,6vw,38px);margin:0;letter-spacing:-1px}h2{font-size:19px;margin:0 0 12px}.sub,.muted{color:var(--muted);line-height:1.6;font-size:14px}.pill{display:inline-flex;gap:7px;align-items:center;border:1px solid var(--line);border-radius:99px;padding:6px 11px;color:#c6c9ff;font-size:12px;margin-top:10px}.card{background:linear-gradient(145deg,#182235,#111827);border:1px solid var(--line);border-radius:20px;padding:17px;margin:13px 0;box-shadow:0 10px 30px #0002}.row{display:flex;gap:9px;align-items:center;flex-wrap:wrap}input{min-width:0;flex:1;width:100%;padding:14px;border-radius:13px;border:1px solid #34435c;background:#0b1220;color:white;font:inherit;margin:5px 0}button,.btn{border:0;border-radius:13px;padding:12px 15px;background:var(--accent);color:white;font:inherit;font-weight:650;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:7px}button.secondary,.btn.secondary{background:#26344b;border:1px solid #3a4962}button:disabled{opacity:.45;cursor:wait}.tabs{display:flex;gap:7px;overflow:auto;margin:14px 0}.tabs button{white-space:nowrap}.result,.track{display:flex;align-items:center;gap:12px;padding:12px 2px;border-bottom:1px solid #29364c}.result:last-child,.track:last-child{border:0}.cover{width:43px;height:43px;border-radius:12px;background:#29375a;display:grid;place-items:center;font-size:21px;flex:none}.meta{min-width:0;flex:1}.meta strong{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.meta small{color:var(--muted)}.actions{display:flex;gap:6px;flex-wrap:wrap}.actions button{padding:9px 11px;font-size:13px}.notice{font-size:12px;color:var(--muted);line-height:1.6}.status{min-height:22px;color:var(--good);font-size:13px}audio{width:100%;margin-top:12px}.empty{text-align:center;padding:20px;color:var(--muted)}.hide{display:none!important}footer{padding:14px 4px 35px}.progress{height:5px;background:#26344b;border-radius:9px;overflow:hidden;margin-top:10px}.progress>i{display:block;height:100%;width:0;background:var(--accent)}a{color:#c7beff}
-</style></head>
+:root{color-scheme:dark;--bg:#080d19;--panel:#121b2d;--panel2:#19253b;--line:#293954;--muted:#9eacc4;--accent:#8c7bff;--accent2:#5fcbad;--white:#f7f8ff}
+*{box-sizing:border-box}html{min-height:100%;background:var(--bg)}body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 50% -12%,#273967 0,transparent 48%),var(--bg);color:var(--white);font-family:system-ui,-apple-system,sans-serif;padding:env(safe-area-inset-top) 15px calc(94px + env(safe-area-inset-bottom));max-width:780px;margin-inline:auto}
+header{padding:23px 4px 13px}h1{font-size:29px;letter-spacing:-.7px;margin:0}h2{font-size:19px;margin:0 0 12px}p{line-height:1.6}.sub,.muted,.hint{color:var(--muted);font-size:13px;line-height:1.6}.brandline{display:flex;align-items:center;gap:10px}.brandicon{width:43px;height:43px;border-radius:15px;background:linear-gradient(140deg,#9a8cff,#5749c5);display:grid;place-items:center;font-size:23px;box-shadow:0 7px 25px #6556d455}
+.pill{display:inline-flex;border:1px solid var(--line);border-radius:99px;padding:5px 10px;color:#c8c1ff;font-size:11px;margin-top:10px}
+.panel{background:linear-gradient(145deg,#17243a,#101827);border:1px solid var(--line);border-radius:21px;padding:16px;margin:12px 0;box-shadow:0 12px 35px #0002}
+input{min-width:0;flex:1;width:100%;padding:14px;border-radius:14px;border:1px solid #3a4b68;background:#0b1323;color:white;font:inherit;outline:none}input:focus{border-color:var(--accent)}
+button,.btn{border:0;border-radius:13px;padding:12px 15px;background:var(--accent);color:white;font:inherit;font-weight:650;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:7px}
+button.secondary,.btn.secondary{background:#263650;border:1px solid #3b4d6a}button:disabled{opacity:.5;cursor:wait}.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.row input{flex:1 1 180px}
+.page{display:none}.page.active{display:block}.bottomnav{position:fixed;z-index:10;bottom:0;left:0;right:0;padding:9px 12px calc(9px + env(safe-area-inset-bottom));background:#0b1120ed;backdrop-filter:blur(18px);border-top:1px solid #293954;display:grid;grid-template-columns:repeat(3,1fr);gap:8px;max-width:780px;margin:auto}
+.navbtn{background:transparent;color:#aab6cd;border:1px solid transparent;display:flex;flex-direction:column;gap:4px;padding:8px 4px;font-size:12px;border-radius:13px}.navbtn .ico{font-size:20px}.navbtn.active{background:#25264a;color:#fff;border-color:#514c91}
+.status{min-height:22px;color:var(--accent2);font-size:13px;padding-top:8px}.notice{font-size:12px;color:var(--muted);line-height:1.6}.result,.track{display:flex;align-items:center;gap:11px;padding:12px 0;border-bottom:1px solid #293954}.result:last-child,.track:last-child{border:0}.cover{width:47px;height:47px;flex:none;border-radius:13px;background:linear-gradient(145deg,#34466d,#202d49);display:grid;place-items:center;font-size:21px;object-fit:cover}.meta{min-width:0;flex:1}.meta strong{display:block;white-space:normal;overflow-wrap:anywhere;font-size:14px}.meta small{display:block;color:var(--muted);font-size:12px;margin-top:3px}.actions{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}.actions button,.actions .btn{padding:8px 10px;font-size:12px;white-space:nowrap}.empty{text-align:center;padding:25px 12px;color:var(--muted);line-height:1.7}.sectionhead{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:8px 0 12px}.tag{font-size:10px;color:#c9c2ff;border:1px solid #494575;padding:4px 7px;border-radius:99px}.hero{padding:18px;background:linear-gradient(130deg,#2d3161,#1b2943 70%);border:1px solid #414878;border-radius:18px;margin:10px 0 14px}.hero strong{font-size:18px}.popularitem{display:flex;align-items:center;gap:10px;padding:11px 0;border-bottom:1px solid #293954}.rank{width:27px;height:27px;display:grid;place-items:center;border-radius:9px;background:#263653;color:#d9d4ff;font-weight:750;font-size:12px;flex:none}.popularitem .meta{flex:1}.popularitem a{color:#d2cbff;text-decoration:none;font-size:12px;white-space:nowrap}.quickchips{display:flex;gap:7px;flex-wrap:wrap;margin:10px 0}.chip{background:#222f48;border:1px solid #354866;color:#dce4f7;border-radius:99px;padding:7px 11px;font-size:12px}
+audio{width:100%;margin-top:10px}footer{padding:14px 4px 20px}a{color:#c9c1ff}.hide{display:none!important}.progress{height:4px;background:#293954;border-radius:8px;overflow:hidden;margin-top:10px}.progress i{display:block;width:0;height:100%;background:var(--accent)}
+</style>
+</head>
 <body>
-<header><h1>🎧 Global Songs</h1><div class="sub">ספריית המוזיקה שלך — חיפוש, הורדה וניגון ממקורות פתוחים.</div><span class="pill">● ללא מכסת הורדות באפליקציה</span></header>
-<section class="card">
-<h2>🔎 מצא מוזיקה להורדה</h2>
-<div class="row"><input id="query" placeholder="חפש שיר, אמן או סגנון" autocomplete="off"><button id="search">חיפוש</button></div>
-<div class="notice">החיפוש כרגע מתבצע ב־Internet Archive. יוצגו רק פריטים עם סימון רישיון Creative Commons או נחלת הכלל; תמיד בדוק את תנאי הפריט לפני שימוש.</div>
-<div id="status" class="status" role="status" aria-live="polite"></div><div class="progress hide" id="progress"><i id="bar"></i></div><div id="results"></div>
+<header>
+ <div class="brandline"><div class="brandicon">♫</div><div><h1>Global Songs</h1><div class="sub">המוזיקה שלך, במקום אחד</div></div></div>
+ <span class="pill">חיפוש · הורדות · מוזיקה ישראלית</span>
+</header>
+
+<main>
+<section class="page" id="page-downloads">
+ <div class="sectionhead"><h2>⬇ ההורדות שלי</h2><span class="tag" id="download-count">0 פריטים</span></div>
+ <div class="panel">
+  <div class="sub">כאן מרוכזים שירים ששמרת באפליקציה וקובצי שמע מהמכשיר.</div>
+  <div id="library"><div class="empty">עדיין אין כאן שירים.<br>עבור לחיפוש כדי למצוא מוזיקה.</div></div>
+ </div>
+ <div class="panel">
+  <h2>🎧 נגן</h2><div id="now" class="muted">בחר שיר כדי להתחיל להאזין.</div>
+  <audio id="player" controls preload="metadata"></audio>
+  <div class="row" style="margin-top:10px"><button class="secondary" id="pick">📂 הוסף קובץ מהמכשיר</button><input id="files" class="hide" type="file" accept="audio/*" multiple></div>
+ </div>
 </section>
-<section class="card">
-<h2>🎵 הנגן שלי</h2>
-<div id="now" class="muted">בחר שיר מהרשימה או פתח קובץ מהמכשיר.</div>
-<audio id="player" controls preload="metadata"></audio>
-<div class="row" style="margin-top:10px"><button class="secondary" id="pick">📂 פתח קבצים מהמכשיר</button><input id="files" class="hide" type="file" accept="audio/*" multiple></div>
-<div id="library"><div class="empty">הספרייה עדיין ריקה</div></div>
+
+<section class="page active" id="page-search">
+ <div class="hero"><strong>מה בא לך לשמוע?</strong><div class="sub">חפש לפי שם שיר, אמן או מילים מהכותרת.</div></div>
+ <div class="panel">
+  <div class="row"><input id="query" placeholder="לדוגמה: דודא, לא להמציא, עומר אדם" autocomplete="off"><button id="search">חפש</button></div>
+  <div class="quickchips"><button class="chip" data-query="דודא">דודא</button><button class="chip" data-query="לא להמציא דודא">לא להמציא</button><button class="chip" data-query="געגועים דודא">געגועים</button></div>
+  <div class="notice">נחפש בקטלוגי מוזיקה ובמקורות פתוחים. כשאין תוצאה ישירה, יוצגו גם קישורים לחיפוש אצל שירותי המוזיקה.</div>
+  <div id="status" class="status" role="status" aria-live="polite"></div><div class="progress hide" id="progress"><i id="bar"></i></div>
+  <div id="results"></div>
+ </div>
+ <div class="notice" style="padding:4px 7px">האזנה ותצוגות מקדימות תלויות בזמינות המקור. הורדה תוצע רק לפריטים שהרישיון שלהם מאפשר זאת.</div>
 </section>
-<section class="card">
-<h2>🌐 מקורות נוספים</h2>
-<div class="row">
-<a class="btn secondary" href="https://www.jamendo.com/" target="_blank" rel="noopener">Jamendo</a>
-<a class="btn secondary" href="https://freemusicarchive.org/" target="_blank" rel="noopener">Free Music Archive</a>
-<a class="btn secondary" href="https://audius.co/" target="_blank" rel="noopener">Audius</a>
-</div>
-<p class="notice">הקישורים פותחים את אתרי המקור. הורדה זמינה רק כאשר האתר והיוצר מאפשרים אותה.</p>
+
+<section class="page" id="page-popular">
+ <div class="hero"><strong>🇮🇱 השירים של ישראל</strong><div class="sub">קלאסיקות ולהיטים ישראליים מתקופות וסגנונות שונים.</div></div>
+ <div class="panel">
+  <h2>🎼 אהובים לאורך השנים</h2>
+  <p class="notice">רשימה ערוכה של שירים ישראליים מוכרים — לא דירוג רשמי או מצעד מדעי. לחיצה תפתח חיפוש האזנה לשיר.</p>
+  <div id="popular-list"></div>
+ </div>
 </section>
-<footer class="notice">האפליקציה אינה עוקפת DRM, מנויים, חומות תשלום או הרשאות. אין בה הגבלת כמות מלאכותית; זמינות ההורדה תלויה ברישיון ובמקור. קבצים מקומיים נשארים במכשיר.</footer>
+</main>
+
+<nav class="bottomnav" aria-label="ניווט ראשי">
+ <button class="navbtn" data-page="downloads"><span class="ico">⬇️</span>הורדות</button>
+ <button class="navbtn active" data-page="search"><span class="ico">🔎</span>חיפוש</button>
+ <button class="navbtn" data-page="popular"><span class="ico">🇮🇱</span>פופולריים בישראל</button>
+</nav>
+
+<footer class="notice">האפליקציה אינה עוקפת DRM, מנויים או הרשאות. הורדה זמינה רק כאשר המקור והרישיון מתירים זאת. תצוגה מקדימה אינה קובץ מלא.</footer>
+
 <script>
-const $=id=>document.getElementById(id);let library=JSON.parse(localStorage.getItem('gs-library')||'[]'),activeUrl='';
-const allowedLicense=u=>typeof u==='string'&&(/creativecommons\.org\/licenses\//i.test(u)||/creativecommons\.org\/publicdomain/i.test(u)||/creativecommons\.org\/publicdomain\/zero/i.test(u)||/creativecommons\.org\/publicdomain\/mark/i.test(u));
-function save(){localStorage.setItem('gs-library',JSON.stringify(library.filter(x=>!x.local)));}
+const $=id=>document.getElementById(id);
+let library=[];
+try{library=JSON.parse(localStorage.getItem('gs-library')||'[]')}catch(e){library=[]}
+const artistDuda=[
+ ['לא להמציא','דודא'],['בית','דודא'],['געגועים','דודא'],['שוטים','דודא & ליעד מאיר'],['תחת אלונקה','דודא & ליעד מאיר'],['ארבעה שבועות','דודא'],['תבדוק׳תי','דודא'],['אחד בפה אחד בלב','דודא'],['שלם','דודא'],['בכנות','דודא'],['מכתב לאדל','דודא'],['גם היא','דודא'],['כסף קל','דודא'],['לופ','דודא'],['תיק תק','דודא & ביג סאזו']
+];
+const israeliSongs=[
+ ['ירושלים של זהב','נעמי שמר'],['הללויה','חלב ודבש'],['עטור מצחך','אריק איינשטיין'],['עוף גוזל','אריק איינשטיין'],['הכניסיני תחת כנפך','ריטה'],['שיר לשלום','להקת הנח״ל'],['לו יהי','נעמי שמר'],['אין לי ארץ אחרת','גלי עטרי'],['שבט אחים ואחיות','קובי אפללו, אביהו מדינה, ליאור נרקיס, עדן בן זקן, בניה ברבי, נסרין קדרי, חנן בן ארי'],['מתנות קטנות','רמי קלינשטיין'],['ממעמקים','עידן רייכל'],['ואיך שלא','אריאל זילבר'],['מחכה','ריטה'],['בואי','עידן רייכל'],['תתארו לכם','שלמה ארצי'],['היא לא דומה','ארקדי דוכין'],['ימים של שקט','לולה'],['אור גדול','אמיר דדון'],['מישהו איתי כאן','דודו טסה'],['תל אביב','עומר אדם']
+];
+function yt(q){return 'https://www.youtube.com/results?search_query='+encodeURIComponent(q)}
+function save(){try{localStorage.setItem('gs-library',JSON.stringify(library.filter(x=>!x.local)))}catch(e){}}
+function switchPage(name){document.querySelectorAll('.page').forEach(p=>p.classList.toggle('active',p.id==='page-'+name));document.querySelectorAll('.navbtn').forEach(b=>b.classList.toggle('active',b.dataset.page===name));window.scrollTo({top:0,behavior:'smooth'});if(name==='downloads')renderLibrary()}
+document.querySelectorAll('.navbtn').forEach(b=>b.addEventListener('click',()=>switchPage(b.dataset.page)));
 function say(t){$('status').textContent=t}
-function render(){const root=$('library');root.innerHTML='';if(!library.length){root.innerHTML='<div class="empty">הספרייה עדיין ריקה</div>';return}library.forEach((s,i)=>{const row=document.createElement('div');row.className='track';const cover=document.createElement('div');cover.className='cover';cover.textContent='♫';const meta=document.createElement('div');meta.className='meta';const name=document.createElement('strong');name.textContent=s.title;const small=document.createElement('small');small.textContent=s.creator||'קובץ שמע';meta.append(name,small);const actions=document.createElement('div');actions.className='actions';const play=document.createElement('button');play.textContent='נגן';play.onclick=()=>playSong(s);actions.append(play);if(s.url&&!s.local){const dl=document.createElement('a');dl.className='btn secondary';dl.textContent='הורד';dl.href=s.url;dl.download='';dl.target='_blank';dl.rel='noopener';actions.append(dl)}const remove=document.createElement('button');remove.className='secondary';remove.textContent='✕';remove.title='הסר';remove.onclick=()=>{library.splice(i,1);save();render()};actions.append(remove);row.append(cover,meta,actions);root.append(row)})}
-function playSong(s){$('player').src=s.url;$('now').textContent='מתנגן עכשיו: '+s.title;$('player').play().catch(()=>say('המקור לא מאפשר ניגון ישיר בדפדפן. נסה להוריד את הקובץ.'))}
-function add(s){if(library.some(x=>x.url===s.url)){say('השיר כבר נמצא בספרייה.');return}library.unshift(s);save();render();say('נוסף לספרייה.')}
-async function archiveSearch(query,rows=50){const p=new URLSearchParams({q:query,fl:'identifier,title,creator,licenseurl,description',rows:String(rows),page:'1',output:'json',sort:'downloads desc'});const r=await fetch('https://archive.org/advancedsearch.php?'+p.toString());if(!r.ok)throw Error('Archive HTTP '+r.status);const j=await r.json();return j.response?.docs||[]}
-async function search(){
- const q=$('query').value.trim();if(!q){say('כתוב שם שיר או אמן.');return}
- $('results').innerHTML='';say('מחפש את '+q+' במקורות מוזיקה…');$('progress').classList.remove('hide');$('bar').style.width='10%';$('search').disabled=true;
- let apple=[],archive=[];
- try{
-  const url='https://itunes.apple.com/search?'+new URLSearchParams({term:q,media:'music',entity:'song',limit:'50'});
-  const r=await fetch(url);if(!r.ok)throw Error('Music search HTTP '+r.status);const data=await r.json();apple=data.results||[];$('bar').style.width='35%';
- }catch(e){}
- try{
-  const safe=q.replace(/[{}\\[\\]^~*?:"]/g,' ').replace(/\\s+/g,' ').trim();
-  const queries=['mediatype:audio AND creator:'+safe,'mediatype:audio AND title:'+safe,'mediatype:audio AND '+safe];
-  for(const query of queries){const found=await archiveSearch(query,50);const seen=new Set(archive.map(x=>x.identifier));for(const x of found)if(x.identifier&&!seen.has(x.identifier)){archive.push(x);seen.add(x.identifier)}}
- }catch(e){}
- $('bar').style.width='75%';
- for(const t of apple){
-  const row=document.createElement('div');row.className='result';const cover=document.createElement('img');cover.className='cover';cover.src=(t.artworkUrl100||'');cover.alt='';cover.style.objectFit='cover';
-  const meta=document.createElement('div');meta.className='meta';const title=document.createElement('strong');title.textContent=t.trackName||'שיר ללא שם';const small=document.createElement('small');small.textContent=(t.artistName||'אמן לא ידוע')+' · תצוגה מקדימה';meta.append(title,small);
-  const actions=document.createElement('div');actions.className='actions';
-  if(t.previewUrl){const play=document.createElement('button');play.textContent='▶ נגן';play.onclick=()=>{$('player').src=t.previewUrl;$('now').textContent='תצוגה מקדימה: '+t.trackName+' — '+t.artistName;$('player').play().catch(()=>say('לא ניתן לנגן את התצוגה המקדימה.'))};actions.append(play)}
-  if(t.trackViewUrl){const link=document.createElement('a');link.className='btn secondary';link.href=t.trackViewUrl;link.target='_blank';link.rel='noopener';link.textContent='פתח מקור';actions.append(link)}
-  row.append(cover,meta,actions);$('results').append(row)
- }
- for(const item of archive.slice(0,30)){
-  const row=document.createElement('div');row.className='result';const cover=document.createElement('div');cover.className='cover';cover.textContent='🎼';
-  const meta=document.createElement('div');meta.className='meta';const title=document.createElement('strong');title.textContent=item.title||item.identifier;
-  const small=document.createElement('small');const creator=item.creator||'יוצר לא צוין';small.textContent=creator+' · '+(allowedLicense(item.licenseurl)?'רישיון פתוח מזוהה':'הרישיון לא אומת');meta.append(title,small);
-  const btn=document.createElement('button');btn.className='secondary';btn.textContent=allowedLicense(item.licenseurl)?'בדוק קבצים':'פתח פריט';btn.onclick=()=>{if(allowedLicense(item.licenseurl))loadFiles(item.identifier,item.title||item.identifier,creator);else window.open('https://archive.org/details/'+encodeURIComponent(item.identifier),'_blank','noopener')};
-  row.append(cover,meta,btn);$('results').append(row)
- }
- const total=apple.length+archive.length;
- if(!total)$('results').innerHTML='<div class="empty">לא נמצאו תוצאות. בדוק את האיות או נסה את שם האמן באנגלית.</div>';
- say(total?'נמצאו '+apple.length+' שירים לתצוגה מקדימה ו־'+archive.length+' פריטים ב־Internet Archive.':'לא התקבלו תוצאות מאף אחד ממקורות החיפוש. ייתכן שהרשת או השירותים חסמו את הבקשה.');
- $('bar').style.width='100%';setTimeout(()=>$('progress').classList.add('hide'),500);$('search').disabled=false;
+function playSong(s){$('player').src=s.url;$('now').textContent='מתנגן עכשיו: '+s.title+ (s.creator?' — '+s.creator:'');$('player').play().catch(()=>say('המקור לא מאפשר ניגון ישיר. אפשר לפתוח את המקור.'))}
+function add(s){if(library.some(x=>x.url===s.url)){say('השיר כבר שמור אצלך.');return}library.unshift(s);save();renderLibrary();say('השיר נוסף לרשימת ההורדות שלך.')}
+function renderLibrary(){const root=$('library');root.innerHTML='';$('download-count').textContent=library.length+' פריטים';if(!library.length){root.innerHTML='<div class="empty">עדיין אין כאן שירים.<br>עבור לחיפוש כדי למצוא מוזיקה.</div>';return}library.forEach((s,i)=>{const row=document.createElement('div');row.className='track';const cover=document.createElement('div');cover.className='cover';cover.textContent='♫';const meta=document.createElement('div');meta.className='meta';const title=document.createElement('strong');title.textContent=s.title;const small=document.createElement('small');small.textContent=s.creator||'קובץ שמע';meta.append(title,small);const actions=document.createElement('div');actions.className='actions';const play=document.createElement('button');play.textContent='▶';play.title='נגן';play.onclick=()=>playSong(s);actions.append(play);if(s.url&&!s.local){const a=document.createElement('a');a.className='btn secondary';a.href=s.url;a.target='_blank';a.rel='noopener';a.textContent='פתח';actions.append(a)}const remove=document.createElement('button');remove.className='secondary';remove.textContent='✕';remove.title='הסר מהרשימה';remove.onclick=()=>{library.splice(i,1);save();renderLibrary()};actions.append(remove);row.append(cover,meta,actions);root.append(row)})}
+function addRow(title,creator,sourceUrl,kind='link'){const row=document.createElement('div');row.className='result';const cover=document.createElement('div');cover.className='cover';cover.textContent=kind==='archive'?'🎼':'♫';const meta=document.createElement('div');meta.className='meta';const strong=document.createElement('strong');strong.textContent=title;const small=document.createElement('small');small.textContent=creator;meta.append(strong,small);const actions=document.createElement('div');actions.className='actions';const a=document.createElement('a');a.className='btn secondary';a.href=sourceUrl;a.target='_blank';a.rel='noopener';a.textContent='האזן / פתח';actions.append(a);row.append(cover,meta,actions);$('results').append(row)}
+function renderDudaResults(){const h=document.createElement('div');h.className='sectionhead';const title=document.createElement('h2');title.textContent='🎤 דודא — שירים של האמן';const tag=document.createElement('span');tag.className='tag';tag.textContent='תוצאות מהירות';h.append(title,tag);$('results').append(h);artistDuda.forEach(([song,artist])=>addRow(song,artist,yt(song+' '+artist+' שיר רשמי')));const link=document.createElement('p');link.className='notice';link.innerHTML='אפשר גם לפתוח את <a href="https://music-fm.co.il/artist.php?id=21" target="_blank" rel="noopener">עמוד האמן דודא ב־Music FM</a> עם קטלוג שירים נוסף.';$('results').append(link)}
+async function appleSearch(term){const u='https://itunes.apple.com/search?'+new URLSearchParams({term,media:'music',entity:'song',limit:'30',country:'IL'});const r=await fetch(u);if(!r.ok)throw Error('Apple Music search HTTP '+r.status);const j=await r.json();return j.results||[]}
+async function archiveSearch(term){const p=new URLSearchParams({q:'mediatype:audio AND ('+term+')',fl:'identifier,title,creator,licenseurl',rows:'30',page:'1',output:'json',sort:'downloads desc'});const r=await fetch('https://archive.org/advancedsearch.php?'+p);if(!r.ok)throw Error('Archive HTTP '+r.status);const j=await r.json();return j.response?.docs||[]}
+function allowedLicense(u){return typeof u==='string'&&(/creativecommons\.org\/licenses\//i.test(u)||/creativecommons\.org\/publicdomain/i.test(u))}
+async function search(){const q=$('query').value.trim();if(!q){say('כתוב שם שיר או אמן כדי להתחיל.');return}$('results').innerHTML='';$('search').disabled=true;$('progress').classList.remove('hide');$('bar').style.width='8%';say('מחפש: '+q+'…');let apple=[],archive=[],errors=[];
+ const isDuda=/דודא|duda|יובל ניאזוב/i.test(q);
+ if(isDuda)renderDudaResults();
+ const terms=[q];if(isDuda)terms.push('Duda Israel','Duda Yuval Niazov','דודא לא להמציא');
+ const unique=[...new Set(terms)];
+ for(let i=0;i<unique.length;i++){try{const list=await appleSearch(unique[i]);apple.push(...list);$('bar').style.width=(15+(i+1)/unique.length*35)+'%'}catch(e){errors.push(e.message)}}
+ try{const clean=q.replace(/[()]/g,' ').trim();archive=await archiveSearch('title:'+clean+' OR creator:'+clean);$('bar').style.width='65%'}catch(e){errors.push(e.message)}
+ const seen=new Set();apple=apple.filter(t=>{const k=(t.trackId||t.trackName+'-'+t.artistName);if(seen.has(k))return false;seen.add(k);return true});
+ if(apple.length){const h=document.createElement('h2');h.textContent='🎧 תוצאות מקטלוג המוזיקה';$('results').append(h);apple.forEach(t=>{const row=document.createElement('div');row.className='result';const img=document.createElement('img');img.className='cover';img.alt='';img.src=t.artworkUrl100||'';const meta=document.createElement('div');meta.className='meta';const strong=document.createElement('strong');strong.textContent=t.trackName||'שיר';const small=document.createElement('small');small.textContent=(t.artistName||'אמן לא ידוע')+' · תצוגה מקדימה אם זמינה';meta.append(strong,small);const actions=document.createElement('div');actions.className='actions';if(t.previewUrl){const play=document.createElement('button');play.textContent='▶';play.title='נגן תצוגה מקדימה';play.onclick=()=>{$('player').src=t.previewUrl;$('now').textContent='תצוגה מקדימה: '+t.trackName+' — '+t.artistName;$('player').play().catch(()=>{})};actions.append(play)}const a=document.createElement('a');a.className='btn secondary';a.href=t.trackViewUrl||yt(t.trackName+' '+t.artistName);a.target='_blank';a.rel='noopener';a.textContent='פתח מקור';actions.append(a);row.append(img,meta,actions);$('results').append(row)})}
+ if(archive.length){const h=document.createElement('h2');h.textContent='📚 מקורות פתוחים';$('results').append(h);archive.forEach(x=>{const row=document.createElement('div');row.className='result';const meta=document.createElement('div');meta.className='meta';const strong=document.createElement('strong');strong.textContent=x.title||x.identifier;const small=document.createElement('small');small.textContent=(x.creator||'יוצר לא צוין')+' · '+(allowedLicense(x.licenseurl)?'רישיון פתוח מזוהה':'יש לבדוק רישיון');meta.append(strong,small);const a=document.createElement('a');a.className='btn secondary';a.href='https://archive.org/details/'+encodeURIComponent(x.identifier);a.target='_blank';a.rel='noopener';a.textContent='פתח';row.append(meta,a);$('results').append(row)})}
+ if(!apple.length&&!archive.length&&!isDuda){const empty=document.createElement('div');empty.className='empty';empty.textContent='לא נמצאו תוצאות בקטלוגים הישירים. הנה קישורי חיפוש נוספים:';$('results').append(empty)}
+ const ext=document.createElement('div');ext.className='quickchips';[['YouTube',yt(q)],['Spotify','https://open.spotify.com/search/'+encodeURIComponent(q)],['Music FM','https://music-fm.co.il/']].forEach(([label,url])=>{const a=document.createElement('a');a.className='btn secondary';a.href=url;a.target='_blank';a.rel='noopener';a.textContent=label;ext.append(a)});$('results').append(ext);
+ if(isDuda)say('זיהיתי שהתכוונת לאמן דודא. הצגתי את שיריו וקישורי האזנה, גם אם קטלוג החיפוש לא החזיר תוצאה ישירה.');
+ else say((apple.length+archive.length)+' תוצאות נמצאו.'+(errors.length?' חלק מהמקורות לא הגיבו.':''));$('bar').style.width='100%';setTimeout(()=>$('progress').classList.add('hide'),400);$('search').disabled=false;
 }
-async function loadFiles(id,title,creator){say('בודק קובצי שמע זמינים…');try{const r=await fetch('https://archive.org/metadata/'+encodeURIComponent(id));if(!r.ok)throw Error();const data=await r.json();const files=(data.files||[]).filter(f=>/\.(mp3|ogg|oga|flac|wav|m4a)$/i.test(f.name||'')&&f.source!=='metadata'&&!f.name.includes('__ia_thumb'));if(!files.length){say('לא נמצא קובץ שמע להורדה בפריט הזה.');return}const f=files.find(x=>/\.mp3$/i.test(x.name))||files[0];const url='https://archive.org/download/'+encodeURIComponent(id)+'/'+f.name.split('/').map(encodeURIComponent).join('/');const license=data.metadata?.licenseurl;if(!allowedLicense(license)){say('לא ניתן לאמת רישיון פתוח לפריט. לא נוסף.');return}add({title,creator,url,license,identifier:id});}catch(e){say('לא הצלחתי לקרוא את פרטי הקובץ. נסה שוב מאוחר יותר.')}}
-$('search').onclick=search;$('query').addEventListener('keydown',e=>{if(e.key==='Enter')search()});$('pick').onclick=()=>$('files').click();$('files').onchange=e=>{Array.from(e.target.files||[]).forEach(f=>{const url=URL.createObjectURL(f);library.unshift({title:f.name,creator:'קובץ מהמכשיר',url,local:true})});render()};render();
+$('search').onclick=search;$('query').addEventListener('keydown',e=>{if(e.key==='Enter')search()});document.querySelectorAll('[data-query]').forEach(b=>b.addEventListener('click',()=>{$('query').value=b.dataset.query;search()}));$('pick').onclick=()=>$('files').click();$('files').onchange=e=>{Array.from(e.target.files||[]).forEach(f=>library.unshift({title:f.name,creator:'קובץ מהמכשיר',url:URL.createObjectURL(f),local:true}));renderLibrary()};
+israeliSongs.forEach(([song,artist],i)=>{const row=document.createElement('div');row.className='popularitem';const rank=document.createElement('div');rank.className='rank';rank.textContent=String(i+1);const meta=document.createElement('div');meta.className='meta';const strong=document.createElement('strong');strong.textContent=song;const small=document.createElement('small');small.textContent=artist;meta.append(strong,small);const a=document.createElement('a');a.href=yt(song+' '+artist);a.target='_blank';a.rel='noopener';a.textContent='האזן ↗';row.append(rank,meta,a);$('popular-list').append(row)});
+renderLibrary();
 if('serviceWorker'in navigator&&location.protocol.startsWith('http'))window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
-let deferredPrompt;window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredPrompt=e;const b=document.createElement('button');b.textContent='⬇ התקן אפליקציה';b.onclick=async()=>{deferredPrompt.prompt();await deferredPrompt.userChoice;deferredPrompt=null;b.remove()};document.querySelector('header').append(b)});
-</script></body></html>
+let deferredPrompt;window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredPrompt=e;const b=document.createElement('button');b.textContent='התקן';b.onclick=async()=>{deferredPrompt.prompt();await deferredPrompt.userChoice;deferredPrompt=null;b.remove()};document.querySelector('header').append(b)});
+</script>
+</body>
+</html>
