@@ -1,35 +1,49 @@
 <!doctype html>
 <html lang="he" dir="rtl">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#10131d"><link rel="manifest" href="manifest.webmanifest">
-<title>Global Song Downloader</title>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#10131d"><meta name="description" content="נגן ומנהל מוזיקה למקורות פתוחים ולהורדות שמותרות לפי הרישיון">
+<link rel="manifest" href="./manifest.webmanifest"><link rel="icon" href="./icon.svg" type="image/svg+xml">
+<title>Global Songs</title>
 <style>
-:root{color-scheme:dark}*{box-sizing:border-box}body{margin:0;background:#0b0e16;color:#f5f6ff;font-family:system-ui;padding:20px;max-width:760px;margin:auto}
-header{padding:18px 0}h1{font-size:25px;margin:0}p,.hint{color:#aab3c7;line-height:1.6;font-size:14px}
-.card{background:#171d2b;border:1px solid #30394d;border-radius:18px;padding:18px;margin:14px 0}
-input{width:100%;padding:14px;border-radius:12px;border:1px solid #424c63;background:#0d1220;color:white;font:inherit;margin:8px 0}
-button,.link{background:#8172f5;color:white;border:0;border-radius:12px;padding:12px 16px;font:inherit;text-decoration:none;display:inline-block;margin:4px;cursor:pointer}
-a{color:#bdb5ff}.source{display:inline-block;background:#222a3b;border-radius:12px;padding:12px;margin:5px;text-decoration:none}
-.track{padding:12px;border-bottom:1px solid #30394d;display:flex;justify-content:space-between;gap:10px;align-items:center}
-audio{width:100%;margin-top:12px}
+:root{color-scheme:dark;--bg:#090d17;--panel:#141c2b;--line:#29364c;--muted:#9eacc4;--accent:#8c7bff;--good:#55d6a2}*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 50% -15%,#26365b 0,transparent 48%),var(--bg);color:#f7f8ff;font-family:system-ui,-apple-system,sans-serif;padding:env(safe-area-inset-top) 16px env(safe-area-inset-bottom);max-width:850px;margin:auto}header{padding:26px 4px 16px}h1{font-size:clamp(26px,6vw,38px);margin:0;letter-spacing:-1px}h2{font-size:19px;margin:0 0 12px}.sub,.muted{color:var(--muted);line-height:1.6;font-size:14px}.pill{display:inline-flex;gap:7px;align-items:center;border:1px solid var(--line);border-radius:99px;padding:6px 11px;color:#c6c9ff;font-size:12px;margin-top:10px}.card{background:linear-gradient(145deg,#182235,#111827);border:1px solid var(--line);border-radius:20px;padding:17px;margin:13px 0;box-shadow:0 10px 30px #0002}.row{display:flex;gap:9px;align-items:center;flex-wrap:wrap}input{min-width:0;flex:1;width:100%;padding:14px;border-radius:13px;border:1px solid #34435c;background:#0b1220;color:white;font:inherit;margin:5px 0}button,.btn{border:0;border-radius:13px;padding:12px 15px;background:var(--accent);color:white;font:inherit;font-weight:650;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:7px}button.secondary,.btn.secondary{background:#26344b;border:1px solid #3a4962}button:disabled{opacity:.45;cursor:wait}.tabs{display:flex;gap:7px;overflow:auto;margin:14px 0}.tabs button{white-space:nowrap}.result,.track{display:flex;align-items:center;gap:12px;padding:12px 2px;border-bottom:1px solid #29364c}.result:last-child,.track:last-child{border:0}.cover{width:43px;height:43px;border-radius:12px;background:#29375a;display:grid;place-items:center;font-size:21px;flex:none}.meta{min-width:0;flex:1}.meta strong{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.meta small{color:var(--muted)}.actions{display:flex;gap:6px;flex-wrap:wrap}.actions button{padding:9px 11px;font-size:13px}.notice{font-size:12px;color:var(--muted);line-height:1.6}.status{min-height:22px;color:var(--good);font-size:13px}audio{width:100%;margin-top:12px}.empty{text-align:center;padding:20px;color:var(--muted)}.hide{display:none!important}footer{padding:14px 4px 35px}.progress{height:5px;background:#26344b;border-radius:9px;overflow:hidden;margin-top:10px}.progress>i{display:block;height:100%;width:0;background:var(--accent)}a{color:#c7beff}
 </style></head>
 <body>
-<header><h1>🎵 Global Song Downloader</h1><p>המוזיקה שלך. המקורות שלך. במקום אחד.</p></header>
-<section class="card"><h2>🔎 חיפוש שירים</h2><input id="q" placeholder="שם שיר או אמן"><button id="search">חפש במקורות</button><div id="results"></div></section>
-<section class="card"><h2>➕ הוסף שיר לנגן</h2><p>הדבק קישור ישיר לקובץ שמע שמותר לך להוריד או לנגן.</p><input id="url" placeholder="https://example.com/song.mp3"><button id="add">הוסף לנגן</button><p id="status" class="hint"></p></section>
-<section class="card"><h2>📂 קבצים מהמכשיר</h2><input id="files" type="file" accept="audio/*" multiple><div id="tracks"><p>עדיין לא נוספו שירים.</p></div><audio id="player" controls></audio></section>
-<section class="card"><h2>🌍 מקורות מוזיקה</h2>
-<a class="source" href="https://jamendo.com/" target="_blank" rel="noopener">Jamendo</a>
-<a class="source" href="https://archive.org/details/audio" target="_blank" rel="noopener">Internet Archive</a>
-<a class="source" href="https://audius.co/" target="_blank" rel="noopener">Audius</a>
-<a class="source" href="https://freemusicarchive.org/" target="_blank" rel="noopener">Free Music Archive</a>
+<header><h1>🎧 Global Songs</h1><div class="sub">ספריית המוזיקה שלך — חיפוש, הורדה וניגון ממקורות פתוחים.</div><span class="pill">● ללא מכסת הורדות באפליקציה</span></header>
+<section class="card">
+<h2>🔎 מצא מוזיקה להורדה</h2>
+<div class="row"><input id="query" placeholder="חפש שיר, אמן או סגנון" autocomplete="off"><button id="search">חיפוש</button></div>
+<div class="notice">החיפוש כרגע מתבצע ב־Internet Archive. יוצגו רק פריטים עם סימון רישיון Creative Commons או נחלת הכלל; תמיד בדוק את תנאי הפריט לפני שימוש.</div>
+<div id="status" class="status" role="status" aria-live="polite"></div><div class="progress hide" id="progress"><i id="bar"></i></div><div id="results"></div>
 </section>
-<p class="hint">יש להוריד ולהשתמש רק במוזיקה שהיוצר או בעל הזכויות התירו. האפליקציה אינה עוקפת מנויים, DRM או הגבלות גישה.</p>
+<section class="card">
+<h2>🎵 הנגן שלי</h2>
+<div id="now" class="muted">בחר שיר מהרשימה או פתח קובץ מהמכשיר.</div>
+<audio id="player" controls preload="metadata"></audio>
+<div class="row" style="margin-top:10px"><button class="secondary" id="pick">📂 פתח קבצים מהמכשיר</button><input id="files" class="hide" type="file" accept="audio/*" multiple></div>
+<div id="library"><div class="empty">הספרייה עדיין ריקה</div></div>
+</section>
+<section class="card">
+<h2>🌐 מקורות נוספים</h2>
+<div class="row">
+<a class="btn secondary" href="https://www.jamendo.com/" target="_blank" rel="noopener">Jamendo</a>
+<a class="btn secondary" href="https://freemusicarchive.org/" target="_blank" rel="noopener">Free Music Archive</a>
+<a class="btn secondary" href="https://audius.co/" target="_blank" rel="noopener">Audius</a>
+</div>
+<p class="notice">הקישורים פותחים את אתרי המקור. הורדה זמינה רק כאשר האתר והיוצר מאפשרים אותה.</p>
+</section>
+<footer class="notice">האפליקציה אינה עוקפת DRM, מנויים, חומות תשלום או הרשאות. אין בה הגבלת כמות מלאכותית; זמינות ההורדה תלויה ברישיון ובמקור. קבצים מקומיים נשארים במכשיר.</footer>
 <script>
-const $=id=>document.getElementById(id);let songs=[];
-function render(){const root=$('tracks');root.innerHTML='';if(!songs.length){root.textContent='עדיין לא נוספו שירים.';return}songs.forEach((s,i)=>{const row=document.createElement('div');row.className='track';const name=document.createElement('span');name.textContent=s.name;const btn=document.createElement('button');btn.textContent='נגן';btn.onclick=()=>{$('player').src=s.url;$('player').play().catch(()=>{$('status').textContent='לא ניתן לנגן את הקובץ או שהמקור חסם גישה.'})};row.append(name,btn);root.append(row)})}
-$('search').onclick=()=>{const q=$('q').value.trim();if(!q)return;const enc=encodeURIComponent(q);const sites=[['Jamendo','https://www.jamendo.com/search?q='+enc],['Internet Archive','https://archive.org/search?query='+enc+'%20AND%20mediatype%3Aaudio'],['Audius','https://audius.co/search/'+enc],['Free Music Archive','https://freemusicarchive.org/search/?quicksearch='+enc]];$('results').innerHTML='';sites.forEach(([n,u])=>{const a=document.createElement('a');a.className='source';a.href=u;a.target='_blank';a.rel='noopener';a.textContent='חפש ב־'+n;$('results').append(a)})};
-$('add').onclick=()=>{try{const u=new URL($('url').value.trim());if(!['http:','https:'].includes(u.protocol))throw 0;songs.push({name:decodeURIComponent(u.pathname.split('/').pop()||'קובץ שמע'),url:u.href});render();$('status').textContent='השיר נוסף לרשימה.'}catch{$('status').textContent='נא להזין קישור תקין לקובץ שמע.'}};
-$('files').onchange=e=>{Array.from(e.target.files||[]).forEach(f=>songs.push({name:f.name,url:URL.createObjectURL(f)}));render()};
+const $=id=>document.getElementById(id);let library=JSON.parse(localStorage.getItem('gs-library')||'[]'),activeUrl='';
+const allowedLicense=u=>typeof u==='string'&&(/creativecommons\.org\/licenses\//i.test(u)||/creativecommons\.org\/publicdomain/i.test(u)||/creativecommons\.org\/publicdomain\/zero/i.test(u)||/creativecommons\.org\/publicdomain\/mark/i.test(u));
+function save(){localStorage.setItem('gs-library',JSON.stringify(library.filter(x=>!x.local)));}
+function say(t){$('status').textContent=t}
+function render(){const root=$('library');root.innerHTML='';if(!library.length){root.innerHTML='<div class="empty">הספרייה עדיין ריקה</div>';return}library.forEach((s,i)=>{const row=document.createElement('div');row.className='track';const cover=document.createElement('div');cover.className='cover';cover.textContent='♫';const meta=document.createElement('div');meta.className='meta';const name=document.createElement('strong');name.textContent=s.title;const small=document.createElement('small');small.textContent=s.creator||'קובץ שמע';meta.append(name,small);const actions=document.createElement('div');actions.className='actions';const play=document.createElement('button');play.textContent='נגן';play.onclick=()=>playSong(s);actions.append(play);if(s.url&&!s.local){const dl=document.createElement('a');dl.className='btn secondary';dl.textContent='הורד';dl.href=s.url;dl.download='';dl.target='_blank';dl.rel='noopener';actions.append(dl)}const remove=document.createElement('button');remove.className='secondary';remove.textContent='✕';remove.title='הסר';remove.onclick=()=>{library.splice(i,1);save();render()};actions.append(remove);row.append(cover,meta,actions);root.append(row)})}
+function playSong(s){$('player').src=s.url;$('now').textContent='מתנגן עכשיו: '+s.title;$('player').play().catch(()=>say('המקור לא מאפשר ניגון ישיר בדפדפן. נסה להוריד את הקובץ.'))}
+function add(s){if(library.some(x=>x.url===s.url)){say('השיר כבר נמצא בספרייה.');return}library.unshift(s);save();render();say('נוסף לספרייה.')}
+async function search(){const q=$('query').value.trim();if(!q){say('כתוב שם שיר או אמן.');return}$('results').innerHTML='';say('מחפש במאגר המוזיקה הפתוח…');$('progress').classList.remove('hide');$('bar').style.width='25%';$('search').disabled=true;try{const params=new URLSearchParams({q:'mediatype:audio AND ('+q.replace(/[():"]/g,' ') +')',fl:'identifier,title,creator,licenseurl,description',rows:'35',page:'1',output:'json',sort:'downloads desc'});const response=await fetch('https://archive.org/advancedsearch.php?'+params);if(!response.ok)throw Error('search');const data=await response.json();$('bar').style.width='70%';const docs=(data.response?.docs||[]).filter(x=>allowedLicense(x.licenseurl));if(!docs.length){$('results').innerHTML='<div class="empty">לא נמצאו תוצאות עם רישיון פתוח מזוהה. נסה מילות חיפוש אחרות או בדוק את אתרי המקור.</div>'}for(const item of docs){const row=document.createElement('div');row.className='result';const cover=document.createElement('div');cover.className='cover';cover.textContent='🎼';const meta=document.createElement('div');meta.className='meta';const title=document.createElement('strong');title.textContent=item.title||item.identifier;const small=document.createElement('small');small.textContent=(item.creator||'יוצר לא צוין')+' · רישיון פתוח';meta.append(title,small);const btn=document.createElement('button');btn.className='secondary';btn.textContent='בדוק קבצים';btn.onclick=()=>loadFiles(item.identifier,item.title||item.identifier,item.creator||'');row.append(cover,meta,btn);$('results').append(row)}say('נמצאו '+docs.length+' פריטים עם רישיון פתוח מזוהה.');}catch(e){say('החיפוש נכשל. בדוק חיבור לאינטרנט ונסה שוב.');}finally{$('bar').style.width='100%';setTimeout(()=>$('progress').classList.add('hide'),500);$('search').disabled=false}}
+async function loadFiles(id,title,creator){say('בודק קובצי שמע זמינים…');try{const r=await fetch('https://archive.org/metadata/'+encodeURIComponent(id));if(!r.ok)throw Error();const data=await r.json();const files=(data.files||[]).filter(f=>/\.(mp3|ogg|oga|flac|wav|m4a)$/i.test(f.name||'')&&f.source!=='metadata'&&!f.name.includes('__ia_thumb'));if(!files.length){say('לא נמצא קובץ שמע להורדה בפריט הזה.');return}const f=files.find(x=>/\.mp3$/i.test(x.name))||files[0];const url='https://archive.org/download/'+encodeURIComponent(id)+'/'+f.name.split('/').map(encodeURIComponent).join('/');const license=data.metadata?.licenseurl;if(!allowedLicense(license)){say('לא ניתן לאמת רישיון פתוח לפריט. לא נוסף.');return}add({title,creator,url,license,identifier:id});}catch(e){say('לא הצלחתי לקרוא את פרטי הקובץ. נסה שוב מאוחר יותר.')}}
+$('search').onclick=search;$('query').addEventListener('keydown',e=>{if(e.key==='Enter')search()});$('pick').onclick=()=>$('files').click();$('files').onchange=e=>{Array.from(e.target.files||[]).forEach(f=>{const url=URL.createObjectURL(f);library.unshift({title:f.name,creator:'קובץ מהמכשיר',url,local:true})});render()};render();
+if('serviceWorker'in navigator&&location.protocol.startsWith('http'))window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
+let deferredPrompt;window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredPrompt=e;const b=document.createElement('button');b.textContent='⬇ התקן אפליקציה';b.onclick=async()=>{deferredPrompt.prompt();await deferredPrompt.userChoice;deferredPrompt=null;b.remove()};document.querySelector('header').append(b)});
 </script></body></html>
