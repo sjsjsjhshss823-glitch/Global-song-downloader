@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#10131d"><link rel="manifest" href="manifest.webmanifest">
+<title>Global Song Downloader</title>
+<style>
+:root{color-scheme:dark}*{box-sizing:border-box}body{margin:0;background:#0b0e16;color:#f5f6ff;font-family:system-ui;padding:20px;max-width:760px;margin:auto}
+header{padding:18px 0}h1{font-size:25px;margin:0}p,.hint{color:#aab3c7;line-height:1.6;font-size:14px}
+.card{background:#171d2b;border:1px solid #30394d;border-radius:18px;padding:18px;margin:14px 0}
+input{width:100%;padding:14px;border-radius:12px;border:1px solid #424c63;background:#0d1220;color:white;font:inherit;margin:8px 0}
+button,.link{background:#8172f5;color:white;border:0;border-radius:12px;padding:12px 16px;font:inherit;text-decoration:none;display:inline-block;margin:4px;cursor:pointer}
+a{color:#bdb5ff}.source{display:inline-block;background:#222a3b;border-radius:12px;padding:12px;margin:5px;text-decoration:none}
+.track{padding:12px;border-bottom:1px solid #30394d;display:flex;justify-content:space-between;gap:10px;align-items:center}
+audio{width:100%;margin-top:12px}
+</style></head>
+<body>
+<header><h1>🎵 Global Song Downloader</h1><p>המוזיקה שלך. המקורות שלך. במקום אחד.</p></header>
+<section class="card"><h2>🔎 חיפוש שירים</h2><input id="q" placeholder="שם שיר או אמן"><button id="search">חפש במקורות</button><div id="results"></div></section>
+<section class="card"><h2>➕ הוסף שיר לנגן</h2><p>הדבק קישור ישיר לקובץ שמע שמותר לך להוריד או לנגן.</p><input id="url" placeholder="https://example.com/song.mp3"><button id="add">הוסף לנגן</button><p id="status" class="hint"></p></section>
+<section class="card"><h2>📂 קבצים מהמכשיר</h2><input id="files" type="file" accept="audio/*" multiple><div id="tracks"><p>עדיין לא נוספו שירים.</p></div><audio id="player" controls></audio></section>
+<section class="card"><h2>🌍 מקורות מוזיקה</h2>
+<a class="source" href="https://jamendo.com/" target="_blank" rel="noopener">Jamendo</a>
+<a class="source" href="https://archive.org/details/audio" target="_blank" rel="noopener">Internet Archive</a>
+<a class="source" href="https://audius.co/" target="_blank" rel="noopener">Audius</a>
+<a class="source" href="https://freemusicarchive.org/" target="_blank" rel="noopener">Free Music Archive</a>
+</section>
+<p class="hint">יש להוריד ולהשתמש רק במוזיקה שהיוצר או בעל הזכויות התירו. האפליקציה אינה עוקפת מנויים, DRM או הגבלות גישה.</p>
+<script>
+const $=id=>document.getElementById(id);let songs=[];
+function render(){const root=$('tracks');root.innerHTML='';if(!songs.length){root.textContent='עדיין לא נוספו שירים.';return}songs.forEach((s,i)=>{const row=document.createElement('div');row.className='track';const name=document.createElement('span');name.textContent=s.name;const btn=document.createElement('button');btn.textContent='נגן';btn.onclick=()=>{$('player').src=s.url;$('player').play().catch(()=>{$('status').textContent='לא ניתן לנגן את הקובץ או שהמקור חסם גישה.'})};row.append(name,btn);root.append(row)})}
+$('search').onclick=()=>{const q=$('q').value.trim();if(!q)return;const enc=encodeURIComponent(q);const sites=[['Jamendo','https://www.jamendo.com/search?q='+enc],['Internet Archive','https://archive.org/search?query='+enc+'%20AND%20mediatype%3Aaudio'],['Audius','https://audius.co/search/'+enc],['Free Music Archive','https://freemusicarchive.org/search/?quicksearch='+enc]];$('results').innerHTML='';sites.forEach(([n,u])=>{const a=document.createElement('a');a.className='source';a.href=u;a.target='_blank';a.rel='noopener';a.textContent='חפש ב־'+n;$('results').append(a)})};
+$('add').onclick=()=>{try{const u=new URL($('url').value.trim());if(!['http:','https:'].includes(u.protocol))throw 0;songs.push({name:decodeURIComponent(u.pathname.split('/').pop()||'קובץ שמע'),url:u.href});render();$('status').textContent='השיר נוסף לרשימה.'}catch{$('status').textContent='נא להזין קישור תקין לקובץ שמע.'}};
+$('files').onchange=e=>{Array.from(e.target.files||[]).forEach(f=>songs.push({name:f.name,url:URL.createObjectURL(f)}));render()};
+</script></body></html>
