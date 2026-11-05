@@ -1,1 +1,14 @@
-{"name":"Global Song Downloader","short_name":"Global Songs","lang":"he","dir":"rtl","start_url":"./","display":"standalone","background_color":"#0b0e16","theme_color":"#10131d"}
+{
+  "name": "Global Songs - נגן והורדת מוזיקה",
+  "short_name": "Global Songs",
+  "description": "חיפוש וניהול מוזיקה ממקורות פתוחים",
+  "lang": "he",
+  "dir": "rtl",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#090d17",
+  "theme_color": "#10131d",
+  "icons": [{"src":"./icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}]
+}
